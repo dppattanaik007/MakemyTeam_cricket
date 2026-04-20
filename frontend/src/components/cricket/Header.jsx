@@ -1,7 +1,6 @@
 import React from "react";
 import { Moon, Sun } from "lucide-react";
 import { Button } from "../ui/button";
-import CricLogo from "./CricLogo";
 
 export default function Header({ theme, onToggleTheme, playerCount }) {
   return (
@@ -16,10 +15,23 @@ export default function Header({ theme, onToggleTheme, playerCount }) {
       <div className="mx-auto flex w-full max-w-5xl items-center justify-between gap-3 px-4 py-3 sm:py-4">
         <div className="flex items-center gap-3">
           <div
-            className="flex h-11 w-11 items-center justify-center overflow-hidden rounded-2xl shadow-lg ring-1 ring-white/15"
+            className="relative flex h-12 w-12 shrink-0 items-center justify-center"
             aria-hidden
           >
-            <CricLogo className="h-full w-full" />
+            {/* Soft orange halo so the logo blends into the dark-green header */}
+            <span
+              className="absolute inset-0 rounded-full blur-[10px] opacity-45"
+              style={{
+                background:
+                  "radial-gradient(circle at 50% 50%, #ff7b2c 0%, rgba(255,123,44,0) 70%)",
+              }}
+            />
+            <img
+              src={`${process.env.PUBLIC_URL || ""}/cricmanager-logo.png`}
+              alt="CricManager"
+              className="relative h-full w-full object-contain drop-shadow-[0_2px_8px_rgba(217,70,31,0.45)]"
+              draggable="false"
+            />
           </div>
           <div className="flex flex-col leading-tight">
             <span
