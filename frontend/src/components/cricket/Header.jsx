@@ -1,6 +1,7 @@
 import React from "react";
 import { Moon, Sun } from "lucide-react";
 import { Button } from "../ui/button";
+import CricLogo from "./CricLogo";
 
 export default function Header({ theme, onToggleTheme, playerCount }) {
   return (
@@ -15,15 +16,10 @@ export default function Header({ theme, onToggleTheme, playerCount }) {
       <div className="mx-auto flex w-full max-w-5xl items-center justify-between gap-3 px-4 py-3 sm:py-4">
         <div className="flex items-center gap-3">
           <div
-            className="flex h-11 w-11 items-center justify-center overflow-hidden rounded-2xl bg-white/10 p-1 shadow-lg ring-1 ring-white/15"
+            className="flex h-11 w-11 items-center justify-center overflow-hidden rounded-2xl shadow-lg ring-1 ring-white/15"
             aria-hidden
           >
-            <img
-              src={`${process.env.PUBLIC_URL || ""}/cricmanager-logo.png`}
-              alt="CricManager"
-              className="h-full w-full object-contain"
-              draggable="false"
-            />
+            <CricLogo className="h-full w-full" />
           </div>
           <div className="flex flex-col leading-tight">
             <span
