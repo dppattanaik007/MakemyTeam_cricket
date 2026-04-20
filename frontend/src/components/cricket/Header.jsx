@@ -15,31 +15,25 @@ export default function Header({ theme, onToggleTheme, playerCount }) {
       <div className="mx-auto flex w-full max-w-5xl items-center justify-between gap-3 px-4 py-3 sm:py-4">
         <div className="flex items-center gap-3">
           <div
-            className="relative flex h-10 w-10 items-center justify-center rounded-xl shadow-lg"
-            style={{
-              background:
-                "radial-gradient(circle at 30% 30%, #e8dcc0 0%, #c2a36b 60%, #7a5a2a 100%)",
-            }}
+            className="flex h-11 w-11 items-center justify-center overflow-hidden rounded-2xl bg-white/10 p-1 shadow-lg ring-1 ring-white/15"
             aria-hidden
           >
-            <span
-              className="absolute inset-[6px] rounded-full border-2"
-              style={{ borderColor: "#7a3b1e" }}
-            />
-            <span
-              className="absolute left-1/2 top-1/2 h-[2px] w-7 -translate-x-1/2 -translate-y-1/2"
-              style={{ background: "#7a3b1e" }}
+            <img
+              src={`${process.env.PUBLIC_URL || ""}/cricmanager-logo.png`}
+              alt="CricManager"
+              className="h-full w-full object-contain"
+              draggable="false"
             />
           </div>
           <div className="flex flex-col leading-tight">
             <span
-              className="font-display text-xl tracking-wide text-[color:var(--brand-cream)] sm:text-2xl"
+              className="font-display text-xl tracking-wide text-[color:var(--brand-cream)] sm:text-[1.45rem]"
               data-testid="app-title"
             >
-              PITCH<span className="text-[color:var(--brand-gold)]">11</span>
+              Cric<span className="text-[color:var(--brand-orange)]">Manager</span>
             </span>
-            <span className="text-[10px] uppercase tracking-[0.2em] text-white/60 sm:text-xs">
-              Cricket Team Manager
+            <span className="text-[10px] font-medium tracking-wide text-white/65 sm:text-xs">
+              From players to perfect teams — instantly.
             </span>
           </div>
         </div>

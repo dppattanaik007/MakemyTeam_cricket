@@ -112,7 +112,7 @@ export default function TeamGenerator({
       const a = document.createElement("a");
       const date = new Date().toISOString().split("T")[0];
       a.href = dataUrl;
-      a.download = `pitch11-teams-${date}.png`;
+      a.download = `cricmanager-teams-${date}.png`;
       document.body.appendChild(a);
       a.click();
       document.body.removeChild(a);

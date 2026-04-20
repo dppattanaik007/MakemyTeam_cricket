@@ -1,4 +1,6 @@
-# PITCH11 — Cricket Team Manager
+# CricManager — Cricket Team Manager
+
+> **From players to perfect teams — instantly.**
 
 A modern, responsive cricket team management web app. Add players, manage your
 squad, mark availability, and generate **balanced teams** automatically. Works

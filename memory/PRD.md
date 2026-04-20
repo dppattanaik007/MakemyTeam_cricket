@@ -1,4 +1,6 @@
-# PITCH11 — Cricket Team Manager · PRD
+# CricManager · PRD
+
+> Tagline: *From players to perfect teams — instantly.*
 
 ## Original problem statement
 Build a modern, responsive cricket team management web app hostable on GitHub
