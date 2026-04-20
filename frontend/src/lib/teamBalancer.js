@@ -28,12 +28,55 @@ function assignByRating(players, numTeams) {
   return teams;
 }
 
+// Pairwise swap refinement: iteratively swap one player from the highest-total
+// team with one from the lowest-total team if doing so strictly reduces the
+// (max-min) spread. Keeps player counts per team unchanged.
+function refineBySwap(teams, maxIters = 400) {
+  for (let iter = 0; iter < maxIters; iter++) {
+    const totals = teams.map((t) => t.total);
+    const maxI = totals.indexOf(Math.max(...totals));
+    const minI = totals.indexOf(Math.min(...totals));
+    if (maxI === minI) return;
+    const spread = totals[maxI] - totals[minI];
+    if (spread === 0) return;
+
+    let best = null; // {ai, bi, newSpread}
+    const A = teams[maxI].players;
+    const B = teams[minI].players;
+    for (let ai = 0; ai < A.length; ai++) {
+      for (let bi = 0; bi < B.length; bi++) {
+        const delta = A[ai].rating - B[bi].rating;
+        if (delta <= 0) continue; // swap only helps if A gives up a higher rating
+        const newA = totals[maxI] - delta;
+        const newB = totals[minI] + delta;
+        // Must not make B exceed A (otherwise we just flip the problem)
+        if (newA < newB) continue;
+        const newSpread = newA - newB;
+        if (newSpread < spread && (!best || newSpread < best.newSpread)) {
+          best = { ai, bi, newSpread, newA, newB };
+        }
+      }
+    }
+    if (!best) return;
+
+    // Perform the swap.
+    const pa = A[best.ai];
+    const pb = B[best.bi];
+    A[best.ai] = pb;
+    B[best.bi] = pa;
+    teams[maxI].total = best.newA;
+    teams[minI].total = best.newB;
+  }
+}
+
 export function generateTeams(players, numTeams) {
   const n = Math.max(2, Math.min(4, Number(numTeams) || 2));
   if (players.length === 0) return [];
 
   // First balance by rating.
   const teams = assignByRating(players, n);
+  // Then refine via pairwise swaps to minimise (max-min) spread.
+  refineBySwap(teams);
 
   // Compute balance metric (for UI feedback).
   const totals = teams.map((t) => t.total);

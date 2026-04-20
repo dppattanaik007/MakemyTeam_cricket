@@ -8,6 +8,7 @@ import {
   DialogContent,
   DialogHeader,
   DialogTitle,
+  DialogDescription,
   DialogFooter,
 } from "../ui/dialog";
 import { Trash2, Pencil, Search, Users2 } from "lucide-react";
@@ -187,6 +188,9 @@ export default function PlayersList({ players, onDelete, onUpdate }) {
             <DialogTitle className="font-display text-xl">
               Edit player
             </DialogTitle>
+            <DialogDescription>
+              Update name, skill, or rating. Changes save to your device.
+            </DialogDescription>
           </DialogHeader>
 
           <div className="space-y-5 pt-2">
